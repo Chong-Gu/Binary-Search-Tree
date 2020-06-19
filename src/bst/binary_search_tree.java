@@ -1,5 +1,8 @@
 package bst;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class binary_search_tree {
 	public static void main(String[] args) {
 //			  12
@@ -20,6 +23,8 @@ public class binary_search_tree {
 		inOrder(root);
 		System.out.print("\npost-order:");
 		postOrder(root);
+		System.out.print("\nBFS:");
+		BFS(root);
 	}
 	
 	private static TreeNode buildBST(int[] arr) {
@@ -78,6 +83,21 @@ public class binary_search_tree {
 			postOrder(root.left);
 			postOrder(root.right);
 			System.out.print(" " + root.val);
+		}
+	}
+	
+	public static void BFS(TreeNode root) {
+		Queue<TreeNode> q = new LinkedList<>();
+		q.offer(root);
+		
+		while (!q.isEmpty()) {
+			TreeNode curr = q.poll();
+			System.out.print(" " + curr.val);
+			
+			if (curr.left != null)
+				q.offer(curr.left);
+			if (curr.right != null)
+				q.offer(curr.right);
 		}
 	}
 }
