@@ -2,11 +2,24 @@ package bst;
 
 public class binary_search_tree {
 	public static void main(String[] args) {
-		int[] arr = {12, 15, 4, 9, 1, 3, 20, 17, 19, 2, 4, 16};
+//			  12
+//			 / 	\
+//		    5    15
+//		   / \	   \
+//		  1   9     20
+//		   \	    /
+//		    3      17
+//		   / \     / \
+//		  2   4  16  19 
+		int[] arr = {12, 15, 5, 9, 1, 3, 20, 17, 19, 2, 4, 16};
 		TreeNode root = buildBST(arr);
-//		System.out.println(root.val);
-//		System.out.println(root.left.val);
-//		System.out.println(root.right.val);
+		
+		System.out.print("pre-order:");
+		preOrder(root);
+		System.out.print("\nin-order:");
+		inOrder(root);
+		System.out.print("\npost-order:");
+		postOrder(root);
 	}
 	
 	private static TreeNode buildBST(int[] arr) {
@@ -42,5 +55,29 @@ public class binary_search_tree {
 		}
 		
 		return root;
+	}
+	
+	private static void preOrder(TreeNode root) {
+		if (root != null) {
+			System.out.print(" " + root.val);
+			preOrder(root.left);
+			preOrder(root.right);
+		}
+	}
+	
+	private static void inOrder(TreeNode root) {
+		if (root != null) {
+			inOrder(root.left);
+			System.out.print(" " + root.val);
+			inOrder(root.right);
+		}
+	}
+	
+	private static void postOrder(TreeNode root) {
+		if (root != null) {
+			postOrder(root.left);
+			postOrder(root.right);
+			System.out.print(" " + root.val);
+		}
 	}
 }
